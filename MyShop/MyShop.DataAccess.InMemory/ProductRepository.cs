@@ -12,6 +12,7 @@ namespace MyShop.DataAccess.InMemory
     {
         ObjectCache cache = MemoryCache.Default;
         List<Product> products;
+
         public ProductRepository()
         {
             products = cache["products"] as List<Product>;
@@ -26,7 +27,7 @@ namespace MyShop.DataAccess.InMemory
             cache["products"] = products;
         }
 
-        public void Insert(Product p )
+        public void Insert(Product p)
         {
             products.Add(p);
         }
@@ -64,7 +65,7 @@ namespace MyShop.DataAccess.InMemory
             return products.AsQueryable();
         }
 
-        public void Delete (string Id)
+        public void Delete(string Id)
         {
             Product productToDelete = products.Find(p => p.Id == Id);
 
@@ -77,6 +78,5 @@ namespace MyShop.DataAccess.InMemory
                 throw new Exception("Product no found");
             }
         }
-
     }
 }
